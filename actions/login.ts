@@ -18,7 +18,10 @@ import { db } from '@/utils/db'
 
 type LoginFormProps = z.infer<typeof loginSchema>
 
-export const loginAction = async (values: LoginFormProps) => {
+export const loginAction = async (
+  values: LoginFormProps,
+  callbackUrl?: string | null
+) => {
   const validatedFields = loginSchema.safeParse(values)
 
   if (!validatedFields.success) {
@@ -103,7 +106,7 @@ export const loginAction = async (values: LoginFormProps) => {
     await signIn('credentials', {
       email,
       password,
-      redirectTo: defaultLoginRedirect,
+      redirectTo: callbackUrl || defaultLoginRedirect,
     })
   } catch (error) {
     if (error instanceof AuthError) {

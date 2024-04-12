@@ -27,6 +27,7 @@ type LoginFormProps = z.infer<typeof loginSchema>
 
 const LoginForm = () => {
   const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get('callbackUrl')
   const urlError =
     searchParams.get('error') === 'OAuthAccountNotLinked'
       ? 'Email already in use with different provider'
@@ -42,6 +43,7 @@ const LoginForm = () => {
     defaultValues: {
       email: '',
       password: '',
+      code: '',
     },
   })
 
@@ -50,7 +52,7 @@ const LoginForm = () => {
     setSuccess('')
 
     startTransition(() => {
-      loginAction(values)
+      loginAction(values, callbackUrl)
         .then((data) => {
           if (data?.error) {
             form.reset()

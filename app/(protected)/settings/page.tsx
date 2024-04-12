@@ -48,8 +48,8 @@ const SettingsPage = () => {
     defaultValues: {
       name: user?.name || undefined,
       email: user?.email || undefined,
-      // password: '',
-      // newPassword: '',
+      password: undefined,
+      newPassword: undefined,
       role: user?.role || 'USER',
       isTwoFactorEnabled: user?.isTwoFactorEnabled || false,
     },

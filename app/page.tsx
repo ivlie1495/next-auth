@@ -8,7 +8,7 @@ const HomePage = () => {
         <h1 className="text-6xl font-semibold">Auth</h1>
         <p className="text-lg">A simple authentication service</p>
         <div>
-          <LoginButton>
+          <LoginButton asChild>
             <Button variant="secondary" size="lg">
               Sign in
             </Button>

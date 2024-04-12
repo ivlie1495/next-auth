@@ -53,7 +53,7 @@ export const settings = async (values: z.infer<typeof settingsSchema>) => {
       return { error: 'Incorrect password!' }
     }
 
-    const hashedPassword = await bcrypt.hash(values.password, 10)
+    const hashedPassword = await bcrypt.hash(values.newPassword, 10)
 
     values.password = hashedPassword
     values.newPassword = undefined

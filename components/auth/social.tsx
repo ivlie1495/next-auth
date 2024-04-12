@@ -6,13 +6,17 @@ import { FaGithub, FaKey } from 'react-icons/fa'
 
 import { Button } from '@/components/ui/button'
 import { defaultLoginRedirect } from '@/routes'
+import { useSearchParams } from 'next/navigation'
 
 type Provider = 'google' | 'github' | 'keycloak'
 
 const AuthSocial = () => {
+  const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get('callbackUrl')
+
   const onClick = (provider: Provider) => {
     signIn(provider, {
-      callbackUrl: defaultLoginRedirect,
+      callbackUrl: callbackUrl || defaultLoginRedirect,
     })
   }
 
